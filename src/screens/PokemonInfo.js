@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
 import axios from "axios"
 import {API_URL, POKEMON_IMAGE_URL} from "../config/PokeAPI"
-import {Box, Grid, Typography} from "@mui/material"
+import {Box, Grid, IconButton, Typography} from "@mui/material"
 import Loader from "../components/Loader"
-import {withStyles} from "@mui/styles"
+import {toggleLike} from "../actions/pokemonAction"
+import {FavoriteRounded} from "@mui/icons-material"
+import {pink} from "@mui/material/colors"
+import {connect} from "react-redux"
 
-const styles = (theme) => ({
+/*const styles = (theme) => ({
     pokemonBox: {
         display: "block",
         height: "600px",
@@ -22,7 +25,7 @@ const styles = (theme) => ({
     pokemonName :{
         fontWeight: "500"
     }
-})
+})*/
 
 class PokemonInfo extends Component {
 
@@ -45,7 +48,7 @@ class PokemonInfo extends Component {
         })
     }
 
-    /*// Check likes
+    // Check likes
     likesChecker = (pokemon) => {
         let found = false
         this.props.likedPokemons?.forEach((poke) => {
@@ -55,13 +58,12 @@ class PokemonInfo extends Component {
         })
         return found
     }
-    */
 
     render() {
         // console.log(this.props.likedPokemons)
-        const { pokemon } = this.state
         // style
-        const { classes } = this.props
+        // const { classes } = this.props
+        const { pokemon } = this.state
 
         if (pokemon){
             const { id, name, height, weight, types } = pokemon
@@ -76,20 +78,23 @@ class PokemonInfo extends Component {
             }
 
             return (
-                    <Box key={id} className={classes.pokemonBox}>
-                        <Typography variant="h2" color="primary" className={classes.pokemonName}>
-                            {name.toUpperCase()}
-                        </Typography>
-                        {/*<IconButton aria-label="add to favorites" onClick={() => this.props.toggleLike(pokemon)}>
-                            <FavoriteBorder style={{ color: this.likesChecker(pokemon) ? pink[500] : "#fff" }} />
-                        </IconButton>*/}
+                    <Box key={id}>
+                        <Box>
+                            <Typography variant="h2" color="primary" style={{ float: "left" }}>
+                                <strong>{name.toUpperCase()}</strong>
+                            </Typography>
+                            <IconButton aria-label="add to favorites" onClick={() => this.props.toggleLike(pokemon)}
+                                        style={{ float: "right" }}>
+                                <FavoriteRounded style={{ color: this.likesChecker(pokemon) ? pink[500] : "#fff", fontSize: "55px" }} />
+                            </IconButton>
+                        </Box>
                         {/*<Box
                             component="img"
                             src={imgUrl}
                             alt="Pokemon Avatar"
                             className={classes.pokemonImg}
                         />*/}
-                        <img src={imgUrl} alt="Pokemon" className={classes.pokemonImg} />
+                        <img src={imgUrl} alt="Pokemon" />
                         <Box>
                             <hr/>
                             <Grid container>
@@ -137,10 +142,8 @@ class PokemonInfo extends Component {
     }
 }
 
-export default withStyles(styles)(PokemonInfo)
 
-
-/*const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     likedPokemons: state.likedPokemons
 })
 
@@ -148,6 +151,6 @@ const mapDispatchToProps = (dispatch) => ({
     toggleLike: (pokemon) => dispatch(toggleLike(pokemon))
 })
 
-export default withStyles(styles)(
+export default (
     connect(mapStateToProps, mapDispatchToProps)
-)(PokemonInfo)*/
+)(PokemonInfo)

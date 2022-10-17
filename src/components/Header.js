@@ -22,6 +22,11 @@ const Header = () => {
                             POKEMONS
                         </Typography>
                     </Link>
+                    <Link to="/saved" className={styleClasses.link}>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{ marginLeft: "20px" }}>
+                            SAVED
+                        </Typography>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </Box>

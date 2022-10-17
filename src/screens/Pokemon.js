@@ -32,7 +32,7 @@ const Pokemon = () => {
                     i++
                     let p = {
                         id: i,
-                        imgUrl: POKEMON_IMAGE_URL+i+".png",
+                        imgUrl: POKEMON_IMAGE_URL + i + ".png",
                         name: pokemon.name
                     }
                     // console.log("pokemon", pokemon)
