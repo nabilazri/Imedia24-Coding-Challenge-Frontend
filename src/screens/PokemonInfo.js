@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useRef} from 'react'
 import axios from "axios"
 import {API_URL, POKEMON_IMAGE_URL} from "../config/PokeAPI"
 import {Box, Grid, IconButton, Typography} from "@mui/material"
@@ -27,6 +27,7 @@ import {connect} from "react-redux"
     }
 })*/
 
+
 class PokemonInfo extends Component {
 
     constructor(props) {
@@ -38,6 +39,7 @@ class PokemonInfo extends Component {
 
     componentDidMount() {
         const { pokemon } = this.props
+        // console.log(pokemon)
         const { id } = pokemon
 
         axios.get(API_URL + "/" + id).then((response) => {
@@ -66,8 +68,12 @@ class PokemonInfo extends Component {
         const { pokemon } = this.state
 
         if (pokemon){
-            const { id, name, height, weight, types } = pokemon
-            const imgUrl = POKEMON_IMAGE_URL + id + ".png"
+            console.log(pokemon)
+            const { id, name, height, weight, types, species } = pokemon
+
+            const imgUrl = POKEMON_IMAGE_URL + species.url.split("/")[6] + ".png"
+            console.log(pokemon.id)
+            // const imgUrl = pokemon.imgUrl
 
             // Pokemon Types
             const PokemonType = () => {
@@ -88,19 +94,10 @@ class PokemonInfo extends Component {
                                 <FavoriteRounded style={{ color: this.likesChecker(pokemon) ? pink[500] : "#fff", fontSize: "55px" }} />
                             </IconButton>
                         </Box>
-                        {/*<Box
-                            component="img"
-                            src={imgUrl}
-                            alt="Pokemon Avatar"
-                            className={classes.pokemonImg}
-                        />*/}
                         <img src={imgUrl} alt="Pokemon" />
                         <Box>
                             <hr/>
                             <Grid container>
-                                {/*<Grid item md={2}>
-                                     <Button>favourite pokemons</Button>
-                                </Grid>*/}
                                 <Grid item md={4}>
                                     <Typography variant="body1" color="primary">
                                         Name <br/> {name.toUpperCase()}

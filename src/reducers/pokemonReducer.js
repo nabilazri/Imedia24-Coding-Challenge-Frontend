@@ -1,4 +1,4 @@
-import {TOGGLE_LIKE} from "../constants/pokemonConstant"
+import {SAVE_POKEMON} from "../constants/pokemonConstant"
 
 const initData = {
     likedPokemons: []
@@ -6,7 +6,7 @@ const initData = {
 
 const pokemonReducer = (state = initData, action) => {
     switch (action.type) {
-        case TOGGLE_LIKE:
+        case SAVE_POKEMON:
             let pokemon = action.payload
             let pokeFromLikedPokemons =
                 state.likedPokemons.find((likedPokemon) =>

@@ -11,10 +11,12 @@ class SavedPokemons extends Component {
         const { likedPokemons } = this.props
 
         return (
-            <Box maxWidth="lg" style={{ backgroundColor: "#FCE700" }}>
+            <Box style={{ backgroundColor: "#FCE700" }}>
                 <Grid container spacing={2} style={{ padding: "20px", textAlign: "center" }}>
                     {likedPokemons.map((pokemon) => {
-                        const imgUrl = POKEMON_IMAGE_URL + pokemon.id + ".png"
+                        const { species } = pokemon
+                        const imgUrl = POKEMON_IMAGE_URL + species.url.split("/")[6] + ".png"
+                        // const imgUrl = POKEMON_IMAGE_URL + index + ".png"
                         return (
                             <PokeCard
                                 pokemon={pokemon}

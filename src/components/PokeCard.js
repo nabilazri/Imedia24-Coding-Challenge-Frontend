@@ -12,9 +12,6 @@ const useStyles = makeStyles(() => ({
         fontWeight: "450",
         fontSize: "14px",
         color: "#6F38C5"
-    },
-    pokemonModal: {
-
     }
 }))
 
@@ -37,6 +34,9 @@ const style = {
 };
 
 const PokeCard = (props) => {
+
+    /*const { pokemon, pokemonImage } = props
+    const { id, name } = pokemon*/
 
     const { pokemon, pokemonImage } = props
     const { id, name } = pokemon
@@ -83,6 +83,7 @@ const PokeCard = (props) => {
                 <Grid container sx={style} key={id}>
                     <PokemonInfo
                         pokemon={pokemon}
+                        pokemonImage={pokemon.imgUrl}
                         key={pokemon.id}
                     />
                 </Grid>

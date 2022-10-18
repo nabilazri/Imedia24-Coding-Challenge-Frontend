@@ -1,1 +1,1 @@
-export const TOGGLE_LIKE = "TOGGLE_LIKE"
+export const SAVE_POKEMON = "TOGGLE_LIKE"

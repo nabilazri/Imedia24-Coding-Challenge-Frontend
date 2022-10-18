@@ -1,6 +1,6 @@
-export const TOGGLE_LIKE = "TOGGLE_LIKE"
+import {SAVE_POKEMON} from "../constants/pokemonConstant"
 
 export const toggleLike = (pokemon) => ({
-    type: TOGGLE_LIKE,
+    type: SAVE_POKEMON,
     payload: pokemon
 })
