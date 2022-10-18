@@ -1,1 +1,1 @@
-# poke-api-app
+ Imedia24 Coding Challenge Frontend
